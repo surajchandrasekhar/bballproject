@@ -13,4 +13,5 @@ BuildGraph1 <- function(dataset, stat) {
     dataset, x = ~dataset$ps.g, y = ~stat,
     color = ~Tm, size = ~W
   )
+  return (p)
 }
