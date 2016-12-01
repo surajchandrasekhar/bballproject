@@ -1,3 +1,5 @@
+library(dplyr)
+library(plotly)
 #This Scatter Plot will compare the ppg of the leading scorer of each team with a selected efficiency category the user chooses
 #create function BuildGraph1, with 2 parameters: the data set and the variable the user wants to compare with
 #use dplyr to filter out only the leading scorer of each team
@@ -5,6 +7,26 @@
 #display the important information, like player name, team name, team wins, and other information you find necessary
 
 # there is no hover for this but everything else should work 
+player <- read.csv('../data/2014-15playerpergame.csv', stringsAsFactors = FALSE)
+advanced <- read.csv('../data/2014-15advanced.csv', stringsAsFactors = FALSE)
+team <- read.csv('../data/2014-15team.csv', stringsAsFactors = FALSE)
+player.joined <- left_join(player,advanced, by=c("Player", "Tm"))
+dataset<- left_join(player.joined,team, by="Tm")
+newdata <- filter(dataset, G.x > 41) %>% 
+  group_by(Tm) %>% 
+  filter(PS.G == max(PS.G))
+p <- plot_ly(
+  newdata, x = ~newdata$PS.G, y = ~newdata$eFG.,
+  color = ~Team, size = ~W,
+  mode = 'markers', hoverinfo = 'text',
+  text = ~paste('Player: ', Player,
+                '</br> Points Per Game: ', PS.G,
+                '</br> Effective Field Goal Percentage: ', eFG.,
+                '</br> Wins: ', W)
+)
+p
+
+
 BuildGraph1 <- function(dataset, stat) {
   newdata <- filter(dataset, G.x > 41) %>% 
             group_by(Tm) %>% 
