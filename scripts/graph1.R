@@ -6,34 +6,19 @@ library(plotly)
 #create plotly scatter plot with x as Points per game, and y variable as the user selected variable, and as size being the number of wins the team had
 #display the important information, like player name, team name, team wins, and other information you find necessary
 
-# there is no hover for this but everything else should work 
-player <- read.csv('../data/2014-15playerpergame.csv', stringsAsFactors = FALSE)
-advanced <- read.csv('../data/2014-15advanced.csv', stringsAsFactors = FALSE)
-team <- read.csv('../data/2014-15team.csv', stringsAsFactors = FALSE)
-player.joined <- left_join(player,advanced, by=c("Player", "Tm"))
-dataset<- left_join(player.joined,team, by="Tm")
-newdata <- filter(dataset, G.x > 41) %>% 
-  group_by(Tm) %>% 
-  filter(PS.G == max(PS.G))
-p <- plot_ly(
-  newdata, x = ~newdata$PS.G, y = ~newdata$eFG.,
-  color = ~Team, size = ~W,
-  mode = 'markers', hoverinfo = 'text',
-  text = ~paste('Player: ', Player,
-                '</br> Points Per Game: ', PS.G,
-                '</br> Effective Field Goal Percentage: ', eFG.,
-                '</br> Wins: ', W)
-)
-p
-
-
+# theres a string literal here 
 BuildGraph1 <- function(dataset, stat) {
   newdata <- filter(dataset, G.x > 41) %>% 
-            group_by(Tm) %>% 
-            filter(PS.G == max(PS.G))
+    group_by(Tm) %>% 
+    filter(PS.G == max(PS.G))
   p <- plot_ly(
-    dataset, x = ~dataset$ps.g, y = ~stat,
-    color = ~Tm, size = ~W
+    newdata, x = ~PS.G, y = ~stat.,
+    color = ~Team, size = ~W,
+    mode = 'markers', hoverinfo = 'text',
+    text = ~paste('Player: ', Player,
+                  '</br> Points Per Game: ', PS.G,
+                  '</br> Effective Field Goal Percentage: ', stat, #string literal
+                  '</br> Wins: ', W)
   )
   return (p)
 }
