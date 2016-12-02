@@ -19,38 +19,29 @@
 library(shiny)
 library(dplyr)
 library(plotly)
-library(magrittr)
 
 # Create Overall Defensive Data Set 
-getwd()
-
-def.df <- read.csv("./data/2015-16advanced.csv", stringsAsFactors = FALSE)
-
-def.df <- def.df %>% 
-  select(Player, `Team` = Tm, `Steal` = STL., `Block` = BLK., DWS)
-
 
 # Function to create scatter plot based on block or steal vs defensive win share
-BuildGraph3 <- function (dataset, input){
+BuildGraph3 <- function (dataset, dstat, qty){
   
   # Create Data Frame limtied to user selected stat
-  filtered <- dataset %>% 
-    select (Player, Team, `Stat` = grep(input$Stat, colnames(iris)), DWS)
-  
-  
+  dataset <- filter(dataset, dstat >= qty)
+
   # Create a scatter plot of selected stat
-  def.plot <- plot_ly(
-    filtered, x = ~filtered$Stat, y = ~filtered$DWS,
-    color = ~Player, type = 'scatter',
+  p <- plot_ly(
+    dataset, x = ~dstat, y = ~DBPM,
+    size=~DWS,
+    color = ~Tm, type = 'scatter',
     mode = 'markers', hoverinfo = 'text',
     
     text = ~paste('Player: ', Player,
-                  '</br> Team: ', Team,
-                  '</br> Steal: ', Steal,
-                  '</br> Black: ', Block,
+                  '</br> Team: ', Tm,
+                  '</br> Steal: ', STL,
+                  '</br> Black: ', BLK,
                   '</br> Defensive Share: ', DWS)
-    )
+  )
   
-  return (def.plot)
+  return (p)
 
 }
