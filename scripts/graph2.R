@@ -4,23 +4,11 @@
 # display necesssary information when it hovers, such as team name, offensive rating, defensive rating, and team wins
 # display information such that the user types in a fragment and plot will show all points that match what the user types in
 library(plotly)
-#library(stringr)
+library(dplyr)
 
-getwd()
-dataset <- read.csv("../data/2014-15team.csv")
-graph <- plot_ly(
-  dataset, x = ~dataset$ORtg, y = ~dataset$DRtg,
-  color = ~Tm, size = ~W, type = 'scatter',
-  mode = 'markers', hoverinfo = 'text',
-  text = ~paste('Team Name: ', Team,
-                '</br> Offensive Rating: ', ORtg,
-                '</br> Deffensive Rating: ', DRtg,
-                '</br> Wins: ', W)
-)
-graph
 BuildGraph2 <- function(dataset, input) {
   
-  #data <- dataset %>% filter(grepl(input, Team))
+  data <- dataset %>% filter(grepl(input, Team))
   
   graph <- plot_ly(
     dataset, x = ~dataset$ORtg, y = ~dataset$DRtg,
