@@ -6,13 +6,19 @@
 library(plotly)
 library(dplyr)
 
-BuildGraph2 <- function(dataset, input) {
-  
-  data <- dataset %>% filter(grepl(input, Team))
+BuildGraph2 <- function(year2, search = "") {
+  team.stats <- paste0("./data/","2015-16","team.csv")
+  dataset <- read.csv(team.stats)
+  dataset <- dataset %>% filter(grepl(search, Team))
+  x.equation <- paste0("~", "ORtg")
+  y.equation <- paste0("~", "DRtg")
   
   graph <- plot_ly(
-    dataset, x = ~dataset$ORtg, y = ~dataset$DRtg,
-    color = ~Tm, size = ~W, type = 'scatter',
+    data=dataset, 
+    x = eval(parse(text = x.equation)), 
+    y = eval(parse(text = y.equation)),
+    color = ~Tm, size = ~W, opacity = 0.5, 
+    type = 'scatter', sizes = c(10, 30),
     mode = 'markers', hoverinfo = 'text',
     text = ~paste('Team Name: ', Team,
             '</br> Offensive Rating: ', ORtg,

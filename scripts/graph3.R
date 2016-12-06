@@ -23,14 +23,20 @@ library(plotly)
 # Create Overall Defensive Data Set 
 
 # Function to create scatter plot based on block or steal vs defensive win share
-BuildGraph3 <- function (dataset, dstat, qty){
+BuildGraph3 <- function(dataset, dstat, qty, yvar="DBPM"){
+  
   
   # Create Data Frame limtied to user selected stat
-  dataset <- filter(dataset, dstat >= qty)
-
+  x.equation = paste0("~",dstat)
+  print(x.equation)
+  y.equation = paste0("~",yvar)
+  dataset <- filter_(dataset, ~dstat >= qty)
+  print(dataset)
   # Create a scatter plot of selected stat
   p <- plot_ly(
-    dataset, x = ~dstat, y = ~DBPM,
+    dataset,
+    x = eval(parse(text = x.equation)), 
+    y = eval(parse(text = y.equation)),
     size=~DWS,
     color = ~Tm, type = 'scatter',
     mode = 'markers', hoverinfo = 'text',
