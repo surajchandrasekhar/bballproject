@@ -23,15 +23,14 @@ library(plotly)
 # Create Overall Defensive Data Set 
 
 # Function to create scatter plot based on block or steal vs defensive win share
-BuildGraph3 <- function(dataset, dstat, psearch, tsearch){
+BuildGraph3 <- function(dataset, dstat, psearch){
   
   
   # Create Data Frame limtied to user selected stat
   x.equation = paste0("~",dstat)
   dataset <- filter(dataset, MP.x >= 20.0)
-  newdata <- dataset %>% filter(grepl(paste0("^",psearch), Player))
-  newdata <- dataset %>% filter(grepl(paste0("^",tsearch), Tm))
-  
+  newdata <- dataset %>% filter(grepl(psearch, Player))
+
   # Create a scatter plot of selected stat
   p <- plot_ly(
     newdata,

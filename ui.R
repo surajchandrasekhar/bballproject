@@ -100,8 +100,7 @@ shinyUI(navbarPage('NBA Statistics',
                                              choices = list("Steals" = 'STL',
                                                             "Blocks" =  'BLK')
                                 ),
-                                textInput('psearch', label = 'Choose a Player', value=''),
-                                textInput('tsearch', label = 'Choose a Team Abbreviation', value='')
+                                textInput('psearch', label = 'Choose a Player', value='')
                               ),
                               
                               # Create a main panel, in which you should display your plotly Scatter plot

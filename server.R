@@ -26,6 +26,6 @@ shinyServer(function(input, output) {
   })
   
   output$scatter3 <- renderPlotly({
-    return(BuildGraph3(player.joined, input$dstat, input$psearch, input$tsearch))
+    return(BuildGraph3(player.joined, input$dstat, input$psearch))
   })
 })
