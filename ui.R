@@ -4,6 +4,10 @@ library(plotly)
 
 shinyUI(navbarPage('NBA Statistics',
                    # Create a tab panel for your map
+                   tabPanel("Proj Info", 
+                            titelPanel("Gleaning Data from NBA Statistics"), 
+                            mainPanel("Suraj writes stuff")
+                            ), 
                    tabPanel('Leading Scorer',
                             titlePanel("How Important is the Leading Scorer's efficiency for a team to win games?"),
                             # Create sidebar layout
