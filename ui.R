@@ -61,8 +61,7 @@ shinyUI(navbarPage('NBA Statistics',
                                                            "13-14" = '13-14',
                                                            "14-15" = '14-15',
                                                            "15-16" = '15-16')
-                              ),
-                                textInput('search', label = 'Choose a Team', value='')
+                              )
                               ),
                               
                               # Main panel: display plotly map
@@ -101,12 +100,8 @@ shinyUI(navbarPage('NBA Statistics',
                                              choices = list("Steals" = 'STL',
                                                             "Blocks" =  'BLK')
                                 ),
-                                sliderInput('qty', 
-                                            label="Minimum Blocks/Steals",
-                                            min = 0.5,
-                                            max = 3.0,
-                                            value = 1.0
-                                            )
+                                textInput('psearch', label = 'Choose a Player', value=''),
+                                textInput('tsearch', label = 'Choose a Team Abbreviation', value='')
                               ),
                               
                               # Create a main panel, in which you should display your plotly Scatter plot

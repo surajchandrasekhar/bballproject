@@ -22,10 +22,10 @@ shinyServer(function(input, output) {
   }) 
   
   output$scatter2 <- renderPlotly({
-    return(BuildGraph2(team.stats, input$search))
+    return(BuildGraph2(team.stats))
   })
   
   output$scatter3 <- renderPlotly({
-    return(BuildGraph3(player.joined, input$dstat,input$qty))
+    return(BuildGraph3(player.joined, input$dstat, input$psearch, input$tsearch))
   })
 })

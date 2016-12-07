@@ -6,10 +6,9 @@
 library(plotly)
 library(dplyr)
 
-BuildGraph2 <- function(year2, search = "") {
+BuildGraph2 <- function(year2) {
   team.stats <- paste0("./data/","2015-16","team.csv")
   dataset <- read.csv(team.stats)
-  dataset <- dataset %>% filter(grepl(search, Team))
   x.equation <- paste0("~", "ORtg")
   y.equation <- paste0("~", "DRtg")
   
