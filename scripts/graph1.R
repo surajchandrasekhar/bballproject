@@ -7,9 +7,9 @@ library(plotly)
 #display the important information, like player name, team name, team wins, and other information you find necessary
 # theres a string literal here 
 BuildGraph1 <- function(dataset, statvar, xvar ='PS.G') {
-  newdata <- filter(dataset, G.x > 41) %>% 
+  newdata <- filter_(dataset, G.x > 41) %>% 
     group_by(Tm) %>% 
-    filter(PS.G == max(PS.G))
+    filter_(PS.G == max(PS.G))
   x.equation = paste0("~",xvar)
   y.equation = paste0("~",statvar)
   p <- plot_ly(

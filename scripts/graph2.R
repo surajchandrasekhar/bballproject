@@ -8,17 +8,16 @@ library(plotly)
 library(dplyr)
 
 # This is not filtering on size :( and the year isn't working either
-BuildGraph2 <- function(year) {
-  team.stats <- paste0("./data/20", year, "team.csv")
-  dataset <- read.csv(team.stats)
+BuildGraph2 <- function(dataset) {
+  newdata <- dataset %>% group_by(Team) %>% select(Team, Div, ORtg, DRtg, W)
   x.equation <- paste0("~", "ORtg")
   y.equation <- paste0("~", "DRtg")
    graph <- plot_ly(
-    data = dataset, 
+    data = newdata, 
     x = eval(parse(text = x.equation)), 
     y = eval(parse(text = y.equation)),
     color = ~Div, size = ~W, opacity = 0.5, 
-    type = 'scatter', sizes = c(10, 30),
+    type = 'scatter', sizes = c(50, 400),
     mode = 'markers', hoverinfo = 'text',
     text = ~paste('Team Name: ', Team,
             '</br> Offensive Rating: ', ORtg,

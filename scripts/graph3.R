@@ -43,7 +43,7 @@ BuildGraph3 <- function(dataset, dstat, psearch){
     mode = 'markers', hoverinfo = 'text',
     
     text = ~paste('Player: ', Player,
-                  '</br> Team: ', Tm,
+                  '</br> Team: ', Team,
                   '</br> Steal: ', STL,
                   '</br> Block: ', BLK,
                   '</br> Defensive Share: ', DWS)

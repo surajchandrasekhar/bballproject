@@ -6,26 +6,24 @@ source('./scripts/graph1.R')
 source('./scripts/graph2.R')
 source('./scripts/graph3.R')
 
- player.stats <- read.csv('./data/2015-16playerpergame.csv', stringsAsFactors = FALSE)
- advanced.stats <- read.csv('./data/2015-16advanced.csv', stringsAsFactors = FALSE)
- team.stats <- read.csv('./data/2015-16team.csv', stringsAsFactors = FALSE)
- player.joined <- left_join(player.stats,advanced.stats, by=c("Player", "Tm"))
- full.joined <- left_join(player.joined,team.stats, by="Tm")
-
 
 # Start shinyServer
 shinyServer(function(input, output) { 
   
   # Render a plotly object that returns your map
   output$scatter1 <- renderPlotly({
-    return(BuildGraph1(full.joined, input$statvar))
+    dataset <- read.csv("./data/nbastats.csv")
+    dataset <- filter(dataset, Season == eval(parse(text=input$year1)))
+    return(BuildGraph1(dataset, input$statvar))
   }) 
   
   output$scatter2 <- renderPlotly({
-    return(BuildGraph2(team.stats))
+    dataset <- read.csv("./data/2015-16data.csv")
+    return(BuildGraph2(dataset))
   })
   
   output$scatter3 <- renderPlotly({
-    return(BuildGraph3(player.joined, input$dstat, input$psearch))
+    dataset <- read.csv("./data/2015-16data.csv")
+    return(BuildGraph3(dataset, input$dstat, input$psearch))
   })
 })
