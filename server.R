@@ -17,10 +17,12 @@ shinyServer(function(input, output) {
   }) 
   
   output$scatter2 <- renderPlotly({
+    dataset <- read.csv("./data/nbastats.csv")
     return(BuildGraph2(dataset, input$year2))
   })
   
   output$scatter3 <- renderPlotly({
-    return(BuildGraph3(dataset, input$year3,input$dstat, input$psearch))
+    dataset <- read.csv("./data/nbastats.csv")
+    return(BuildGraph3(dataset,input$year3,input$dstat, input$psearch))
   })
 })
