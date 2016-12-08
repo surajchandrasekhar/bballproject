@@ -6,7 +6,40 @@ shinyUI(navbarPage('NBA Statistics',
                    # Create a tab panel for your map
                    tabPanel("Proj Info", 
                             titlePanel("Gleaning Data from NBA Statistics"), 
-                            mainPanel("Suraj writes stuff")
+                            mainPanel(img(src = "NBA_photo.png", height = 300, width = 300), 
+                                      p("Basketball is one of the many sports where data analytics have become more and more prominent. 
+                                      With the vast amount of data now contained by basketball statisticians,
+                                      we wanted to look at certain scenarios to see
+                                      if there are trends that have been going on for
+                                      years, or if the landscape of basketball changes
+                                      over time. For this assignment, we got a data
+                                      set of the last 10 full nba seasons, and we have
+                                      created 3 specific topics of interest we are looking."), 
+                                      p("First, we are going to see how important the leading scorer
+                                      for a team is.To do this, we created a scatter plot showing
+                                      the the average points per game for the leading scorer of each
+                                      team, than comparing it to varius efficiency stats,
+                                      such as Field Goal Percentage, Effective Field Goal Percentage,
+                                      Player Efficiency Rating(PER), etc."), 
+                                      p("Secondly, we are going to look at if the successful teams 
+                                      are more offensive or defensive oriented, and if that trend 
+                                      changes overtime. We are doing this by creating a scatter
+                                      plot comparing all the teams offensive and defensive ratings,
+                                      and you can use the legend on the right side to decide which
+                                      divisions you want to look at."), 
+                                      p("Finally, We are looking to see if a player is determined 
+                                      to be a quality defender solely based on steals and blocks.
+                                      We filtered the data to show only players that have played significant
+                                      minutes in games, and the user selects if they want to look into
+                                      the blocks or the steals category, and compare that to the Defensive
+                                      Box Plus Minus stat, an advanced stat that looks at your stats.
+                                      However we can tell the effectiveness of the defender by
+                                      the size of each bubble, which is based on the Defensive Win
+                                      Shares, an advanced statistic that measures how many wins
+                                      a player contributed to his team by his defensive efforts."),
+                                      p("Check out more information ", 
+                                        a("here.", href = "http://www.nba.com")))
+                                      
                             ), 
                    tabPanel('Leading Scorer',
                             titlePanel("How Important is the Leading Scorer's efficiency for a team to win games?"),
