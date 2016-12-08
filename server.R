@@ -9,21 +9,18 @@ source('./scripts/graph3.R')
 
 # Start shinyServer
 shinyServer(function(input, output) { 
+  dataset <- read.csv("./data/nbastats.csv")
   
   # Render a plotly object that returns your map
   output$scatter1 <- renderPlotly({
-    dataset <- read.csv("./data/nbastats.csv")
-    dataset <- filter(dataset, Season == eval(parse(text=input$year1)))
-    return(BuildGraph1(dataset, input$statvar))
+    return(BuildGraph1(dataset,input$year1,input$statvar))
   }) 
   
   output$scatter2 <- renderPlotly({
-    dataset <- read.csv("./data/2015-16data.csv")
-    return(BuildGraph2(dataset))
+    return(BuildGraph2(dataset, input$year2))
   })
   
   output$scatter3 <- renderPlotly({
-    dataset <- read.csv("./data/2015-16data.csv")
-    return(BuildGraph3(dataset, input$dstat, input$psearch))
+    return(BuildGraph3(dataset, input$year3,input$dstat, input$psearch))
   })
 })

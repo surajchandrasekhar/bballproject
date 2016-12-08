@@ -8,7 +8,8 @@ library(plotly)
 library(dplyr)
 
 # This is not filtering on size :( and the year isn't working either
-BuildGraph2 <- function(dataset) {
+BuildGraph2 <- function(dataset, year2) {
+  dataset <- filter(dataset,Season == year2)
   newdata <- dataset %>% group_by(Team) %>% select(Team, Div, ORtg, DRtg, W)
   x.equation <- paste0("~", "ORtg")
   y.equation <- paste0("~", "DRtg")

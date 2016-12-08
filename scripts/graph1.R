@@ -6,10 +6,11 @@ library(plotly)
 #create plotly scatter plot with x as Points per game, and y variable as the user selected variable, and as size being the number of wins the team had
 #display the important information, like player name, team name, team wins, and other information you find necessary
 # theres a string literal here 
-BuildGraph1 <- function(dataset, statvar, xvar ='PS.G') {
-  newdata <- filter_(dataset, G.x > 41) %>% 
+BuildGraph1 <- function(dataset, year1, statvar, xvar ='PS.G') {
+ dataset <- filter(dataset,Season == year1)
+  newdata <- filter(dataset, G.x > 41) %>% 
     group_by(Tm) %>% 
-    filter_(PS.G == max(PS.G))
+    filter(PS.G == max(PS.G))
   x.equation = paste0("~",xvar)
   y.equation = paste0("~",statvar)
   p <- plot_ly(
