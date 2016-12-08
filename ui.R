@@ -6,7 +6,12 @@ shinyUI(navbarPage('NBA Statistics',
                    # Create a tab panel for your map
                    tabPanel("Proj Info", 
                             titlePanel("Gleaning Data from NBA Statistics"), 
-                            mainPanel(img(src = "NBA_photo.png", height = 300, width = 300), 
+                            mainPanel(img(src = "NBA_photo.png", height = 300, width = 300),
+                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-9/13151594_1213068612044309_1817749460380821887_n.jpg?oh=60ee2ab84066df6b142c8ac52e8b8981&oe=58B5CA82", height = 100, width = 100),
+                                      
+                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/c0.13.50.50/p50x50/13654213_1484712278220822_807099208394567818_n.jpg?oh=401b89c64a8302cedde2d7cabeba5e66&oe=58AE2A60", height = 100, width = 100),
+                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/c8.0.50.50/p50x50/14716358_10157905841285227_4407687058356869080_n.jpg?oh=cb74a0a6ffb16dcb90e16d832b28b327&oe=58C159E8", height = 100, width = 100),
+                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/15134712_10209982006780911_4784991390141334730_n.jpg?oh=d55f8c9803e2157e3b6a002b607d08f8&oe=58F4D1E2", height = 100, width = 100),
                                       p("Basketball is one of the many sports where data analytics have become more and more prominent. 
                                       With the vast amount of data now contained by basketball statisticians,
                                       we wanted to look at certain scenarios to see
@@ -37,7 +42,7 @@ shinyUI(navbarPage('NBA Statistics',
                                       the size of each bubble, which is based on the Defensive Win
                                       Shares, an advanced statistic that measures how many wins
                                       a player contributed to his team by his defensive efforts."),
-                                      p("Check out more information ", 
+                                      p("Check out more information ",
                                         a("here.", href = "http://www.nba.com")))
                                       
                             ), 
