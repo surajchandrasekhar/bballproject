@@ -2,16 +2,52 @@ library(dplyr)
 library(shiny)
 library(plotly)
 
-shinyUI(navbarPage('NBA Statistics',
+shinyUI(
+  navbarPage(
+    tags$style("body {background-color: #006666;} 
+                p {color: white;}
+                h2 {color: #D1D1D1;}
+                strong {color: black;}
+                span {float: right;}
+               "),'NBA Statistics',
                    # Create a tab panel for your map
-                   tabPanel("Proj Info", 
-                            titlePanel("Gleaning Data from NBA Statistics"), 
-                            mainPanel(img(src = "NBA_photo.png", height = 300, width = 300),
-                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-9/13151594_1213068612044309_1817749460380821887_n.jpg?oh=60ee2ab84066df6b142c8ac52e8b8981&oe=58B5CA82", height = 100, width = 100),
+                   tabPanel("Proj Info",
+                            tags$head(
+                              tags$style(
+                                HTML("@import url('//fonts.googleapis.com/css?family=Lobster|Cabin:400,700');"))
+                            ),
+                            titlePanel(h1("Gleaning Data from NBA Statistics", 
+                                      style = "font-family: 'Lobster', cursive;
+                                      font-weight: 500; line-height: 1.1; 
+                                      color: white;")
+                            ),
+                            
+                            span(
+                              div(
+                                img(src="https://scontent.xx.fbcdn.net/v/t1.0-9/13151594_1213068612044309_1817749460380821887_n.jpg?oh=60ee2ab84066df6b142c8ac52e8b8981&oe=58B5CA82", height = 100, width = 100),
+                                br(),
+                                strong("Joe Motto")
+                              ),
+                              div(
+                                img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/c0.13.50.50/p50x50/13654213_1484712278220822_807099208394567818_n.jpg?oh=401b89c64a8302cedde2d7cabeba5e66&oe=58AE2A60", height = 100, width = 100),
+                                br(),
+                                strong("MacKenzie Olson")
+                              ),
+                              div(
+                                img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/c8.0.50.50/p50x50/14716358_10157905841285227_4407687058356869080_n.jpg?oh=cb74a0a6ffb16dcb90e16d832b28b327&oe=58C159E8", height = 100, width = 100),
+                                br(),
+                                strong("Joseph Narvaez-Jensen")
+                              ),
+                              div(
+                                img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/15134712_10209982006780911_4784991390141334730_n.jpg?oh=d55f8c9803e2157e3b6a002b607d08f8&oe=58F4D1E2", height = 100, width = 100),
+                                br(),
+                                strong("Suraj Chandrasekhar")
+                              )
+                            ),
+                            mainPanel(img(src = "NBA_photo.png", height = 200, width = 200),
+                                    
                                       
-                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/c0.13.50.50/p50x50/13654213_1484712278220822_807099208394567818_n.jpg?oh=401b89c64a8302cedde2d7cabeba5e66&oe=58AE2A60", height = 100, width = 100),
-                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/c8.0.50.50/p50x50/14716358_10157905841285227_4407687058356869080_n.jpg?oh=cb74a0a6ffb16dcb90e16d832b28b327&oe=58C159E8", height = 100, width = 100),
-                                      img(src="https://scontent.xx.fbcdn.net/v/t1.0-1/p50x50/15134712_10209982006780911_4784991390141334730_n.jpg?oh=d55f8c9803e2157e3b6a002b607d08f8&oe=58F4D1E2", height = 100, width = 100),
+                                      
                                       p("Basketball is one of the many sports where data analytics have become more and more prominent. 
                                       With the vast amount of data now contained by basketball statisticians,
                                       we wanted to look at certain scenarios to see
@@ -47,7 +83,7 @@ shinyUI(navbarPage('NBA Statistics',
                                       
                             ), 
                    tabPanel('Leading Scorer',
-                            titlePanel("How Important is the Leading Scorer's efficiency for a team to win games?"),
+                            titlePanel(h2("How Important is the Leading Scorer's efficiency for a team to win games?")),
                             # Create sidebar layout
                             sidebarLayout(
                               
@@ -84,7 +120,7 @@ shinyUI(navbarPage('NBA Statistics',
                             )
                    ),
                    tabPanel('Team Data',
-                            titlePanel('Is Offense or Defense more important to a Teams Success?'),
+                            titlePanel(h2('Is Offense or Defense more important to a Teams Success?')),
                             # Create sidebar layout
                             sidebarLayout(
                               
@@ -115,7 +151,7 @@ shinyUI(navbarPage('NBA Statistics',
                    # Create a tabPanel to show your scatter plot
                    tabPanel('Defense',
                             # Add a titlePanel to your tab
-                            titlePanel('Does Blocks Or Steals Make you an Effective Defender'),
+                            titlePanel(h2('Does Blocks Or Steals Make you an Effective Defender?')),
                             
                             # Create a sidebar layout for this tab (page)
                             sidebarLayout(
